@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine, Name?</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffe4e6;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+        }
+
+        .heart,
+        .rose {
+            position: absolute;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+        }
+
+        .heart {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            clip-path: polygon(50% 0%, 100% 40%, 80% 100%, 50% 80%, 20% 100%, 0% 40%);
+            animation-name: floatUp;
+        }
+
+        .rose {
+            width: 30px;
+            height: auto;
+            content: "🌹";
+            font-size: 24px;
+            position: absolute;
+            animation-name: fallDown;
+        }
+
+        @keyframes floatUp {
+            from {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0.7;
+            }
+
+            to {
+                transform: translateY(-10vh) scale(1);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fallDown {
+            from {
+                transform: translateY(-10vh);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        .message {
+            display: none;
+            font-size: 1.5rem;
+            color: #ff3366;
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body class="flex flex-col items-center justify-center min-h-screen text-center">
+    <h1 class="text-4xl font-bold text-pink-600 mb-6">Will You Be My Valentine, Chittu? ❤️</h1>
+
+    <div class="flex space-x-4">
+        <button id="yes-button"
+            class="button bg-pink-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-pink-700 focus:outline-none">
+            Yes
+        </button>
+        <button id="no-button"
+            class="button bg-gray-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-gray-700 focus:outline-none">
+            No
+        </button>
+    </div>
+
+    <audio id="music-player" loop>
+        <source src="https://www.mboxdrive.com/Dandelions-RuthB.mp3" type="audio/mp3">
+    </audio>
+
+    <div id="message" class="message">
+        <p>My Dearest Thangam meh,</p>
+        <p>Happy Valentine’s Day, my love! ❤️</p>
+        <p>This effort is to make a smile on your face, I know its hard for both of us on the same time,But we are doing this for your fathers name and mental health, Na unna neraiya kastam padithiten d Ammu, I didnt mean to do that all byv purposly, Understand me d Ammu, I will never leave still my last breadth, Seri ya pls dont worry about that </p>
+        <p>"Nee epayum meh enaku oru hand baby tha, and I'm the mother, father, bf etcc for this beautiful creature in the world, You are my angel, you dont know about you that how precious you are . but i know you very well 🌼💫</p>
+        <p>But I don’t have to wish anymore, because you are mine, and I am yours. You are the most precious gift life
+            has given me, and I promise to cherish, love, and stand by you through every high and low. No words will
+            ever be enough to describe how much you mean to me, but I hope you always feel it in my actions, my hugs,
+            and the way I look at you.</p>
+        <p> Nee en kita that 3 words keta la,I love you so so so so much Pochi🥰 more than words can ever express. Today, tomorrow, and forever.I Will never leave you alone, Dont be scared of me doing anything, I need you in my life forver. ❤️💖</p>
+        <p>With Love & Yours always,<br>Your Cute Papa❤️🥰</p>
+    </div>
+
+    <script>
+        const yesButton = document.getElementById('yes-button');
+        const noButton = document.getElementById('no-button');
+        const musicPlayer = document.getElementById('music-player');
+        const message = document.getElementById('message');
+
+        yesButton.addEventListener('click', () => {
+            musicPlayer.play();
+            startRoseRain();
+            yesButton.style.display = 'none';
+            noButton.style.display = 'none';
+            message.style.display = 'block';
+        });
+
+        noButton.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 50);
+            noButton.style.position = 'absolute';
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        });
+
+        function startRoseRain() {
+            for (let i = 0; i < 30; i++) {
+                createRose();
+                createHeart();
+            }
+        }
+
+        function createRose() {
+            const rose = document.createElement('div');
+            rose.innerHTML = '🌹';
+            rose.classList.add('rose');
+            rose.style.left = Math.random() * window.innerWidth + 'px';
+            document.body.appendChild(rose);
+            setTimeout(() => { document.body.removeChild(rose); }, 5000);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => { document.body.removeChild(heart); }, 5000);
+        }
+    </script>
+</body>
+
+</html>
